@@ -1,6 +1,4 @@
-/* eslint-disable no-useless-concat */
 import { html } from '../../utils/utils';
-
 
 export default class View {
 
@@ -44,15 +42,17 @@ export default class View {
     const userElement = this.createElement('li', 'user-prev');
 
     userElement.innerHTML = html`<a class="user-link" href="${user.html_url}" target="_blank">
-                              <div class="img-wrapper">
-                                <img class="user-photo" src="${user.avatar_url}" alt="${user.login}_photo">
-                              </div>
-                              <h4 class="user-name">${user.login}</h4>
-                              </a>
-                              <div class="user-content">
-                                <a class="user-content__link" href="https://github.com/${user.login}?tab=repositories" target="_blank">Repositories</a>
-                                <a class="details" href="#" >Подробнее</a>
-                              </div>` ;
+                                  <div class="img-wrapper">
+                                    <img class="user-photo" src="${user.avatar_url}" alt="${user.login}_photo">
+                                  </div>
+                                  <h4 class="user-name">${user.login}</h4>
+                                 </a>
+                                 <div class="user-content">
+                                   <a class="user-content__link" href="https://github.com/${user.login}?tab=repositories"   target="_blank">Repositories</a>
+                                   <a class="details" href="#" >Подробнее</a>
+                                 </div>
+                                `;
+
     this.usersList.append(userElement);
     userElement.addEventListener('click', (event) => {
 
@@ -65,12 +65,13 @@ export default class View {
 
   getMoreInfo(userData, element) {
     const div = this.createElement('div', 'more-info');
+
     this.api.loadUserData(userData.login)
       .then((data) => {
         div.innerHTML = html`<p>Name: ${data.name ? data.name : data.login}</p>
                              <p>Data created: ${data.created_at.substr(0, 10)}</p>
                              <p>Repositories pub: ${data.public_repos}</p>
-                           `;
+                            `;
         element.append(div);
       });
   }
@@ -88,6 +89,7 @@ export default class View {
   }
 
   counterMessage(usersCount) {
-    return (usersCount > 0) ? `Найдено ${usersCount} пользователей` : 'По вашему запросу пользователей не найдено';
+
+    return (usersCount > 0) ? `Найдено: ${usersCount} пользователей` : 'По вашему запросу пользователей не найдено';
   }
 }

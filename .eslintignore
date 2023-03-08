@@ -1,2 +1,6 @@
-build/*.js
+dist/*.js
 webpack.config.js
+src/utils/*js
+src/vendor/*.js
+src/modules/modals/*.js
+src/modules/form-validate/**/*.js

@@ -8,10 +8,20 @@ export default class Api {
 
   async loadUsers(searchValue) {
 
-    return await fetch(`${URL}search/users?q=${searchValue}&per_page=${USER_PER_PAGE}`);
+    return await fetch(`${URL}search/users?q=${searchValue}&per_page=${USER_PER_PAGE}`)
+      .then((response) => {
+
+        if (response.ok) {
+
+          return response.json();
+        } else {
+          this.errorMessage(`Ошибка (response.status: ${response.status})`);
+        }
+      });
   }
 
   async loadUserData(user) {
+
     return await fetch(`${URL}users/${user}`).then((response) => response.json());
   }
 
@@ -37,5 +47,3 @@ export default class Api {
     }, ALERT_SHOW_TIME);
   }
 }
-
-

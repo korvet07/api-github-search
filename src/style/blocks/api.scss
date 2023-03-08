@@ -33,14 +33,13 @@
   height: 100%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 
-  @media (max-width: 768px) {
+  @media (max-width: 1360px) {
     width: 40%;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 680px) {
     width: 85%;
   }
-
 }
 
 .users-list {
@@ -83,6 +82,7 @@
   line-height: 16px;
   color: $color-default-black;
 }
-.user-link{
+
+.user-link {
   width: 100%;
 }
