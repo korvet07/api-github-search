@@ -6,21 +6,18 @@ export default class View {
     this.api = api;
     this.app = document.querySelector('#app');
 
-    this.title = this.createElement('h1', 'search-title');
-    this.title.textContent = 'Github search users';
+    this.title = this.createElement('h1', 'search-title', 'Github search users');
     this.searchCounter = this.createElement('div', 'users-count');
     this.searchInput = this.createElement('input', 'search-input');
     this.searchInput.type = 'search';
     this.searchInput.autofocus = true;
     this.searchInput.placeholder = 'Введите имя';
-    this.searchButton = this.createElement('button', 'btn btn--green');
-    this.searchButton.textContent = 'Найти';
+    this.searchButton = this.createElement('button', 'btn btn--green', 'Найти');
     this.searchButton.type = 'button';
     this.inputWrapper = this.createElement('div', 'input-wrapper');
     this.usersListWrapper = this.createElement('div', 'users-wrapper');
     this.usersList = this.createElement('ul', 'users-list');
-    this.loadMore = this.createElement('button', 'load-more btn');
-    this.loadMore.textContent = 'Загрузить ещё';
+    this.loadMore = this.createElement('button', 'load-more btn', 'Загрузить ещё');
     this.loadMore.style.display = 'none';
 
 
@@ -29,12 +26,12 @@ export default class View {
     this.app.append(this.title, this.inputWrapper, this.searchCounter, this.usersListWrapper, this.loadMore);
   }
 
-  createElement(elemTag, elemClass) {
+  createElement(elemTag, elemClass, text) {
     const element = document.createElement(elemTag);
 
-    if (elemClass) {
-      element.className = elemClass;
-    }
+    element.className = elemClass ? elemClass : '';
+    element.textContent = text ? text : '';
+
     return element;
   }
 

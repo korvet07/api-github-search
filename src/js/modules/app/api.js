@@ -28,6 +28,7 @@ export default class Api {
 
   errorMessage(message) {
     const alertContainer = document.createElement('div');
+
     alertContainer.style.zIndex = '100';
     alertContainer.style.position = 'absolute';
     alertContainer.style.left = '0';
