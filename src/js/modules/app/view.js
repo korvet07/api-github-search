@@ -1,5 +1,7 @@
 import { html } from '../../utils/utils';
 
+const ALERT_SHOW_TIME = 3000;
+
 export default class View {
 
   constructor(api) {
@@ -70,7 +72,8 @@ export default class View {
                              <p>Repositories pub: ${data.public_repos}</p>
                             `;
         element.append(div);
-      });
+      })
+      .catch((err) => this.errorMessage(`Ошибка загрузки: ${err.message}`));
   }
 
   clearUsers() {
@@ -88,5 +91,27 @@ export default class View {
   counterMessage(usersCount) {
 
     return (usersCount > 0) ? `Найдено: ${usersCount} пользователей` : 'По вашему запросу пользователей не найдено';
+  }
+
+  errorMessage(message) {
+    const alertContainer = document.createElement('div');
+
+    alertContainer.style.zIndex = '100';
+    alertContainer.style.position = 'absolute';
+    alertContainer.style.left = '0';
+    alertContainer.style.top = '0';
+    alertContainer.style.right = '0';
+    alertContainer.style.padding = '20px 5px';
+    alertContainer.style.fontSize = '40px';
+    alertContainer.style.textAlign = 'center';
+    alertContainer.style.backgroundColor = 'red';
+    alertContainer.style.color = 'black';
+    alertContainer.textContent = message;
+
+    document.body.append(alertContainer);
+
+    setTimeout(() => {
+      alertContainer.remove();
+    }, ALERT_SHOW_TIME);
   }
 }

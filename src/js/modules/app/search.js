@@ -18,8 +18,17 @@ export default class Search {
 
     if (this.view.searchInput.value) {
       this.api.loadUsers(this.view.searchInput.value)
+        .then((response) => {
+
+          if (response.ok) {
+
+            return response.json();
+          } else {
+            this.view.errorMessage(`Ошибка (response.status: ${response.status})`);
+          }
+        })
         .then((data) => this.renderUsers(data))
-        .catch((error) => this.api.errorMessage(`Ошибка загрузки: ${error.message}`));
+        .catch((error) => this.view.errorMessage(`Ошибка загрузки: ${error.message}`));
     }
   }
 
@@ -28,10 +37,10 @@ export default class Search {
     this.view.searchCounter.textContent = this.view.counterMessage(data.total_count);
     this.view.toggleStateLoadMoreButton(this.#users.length);
 
-    this.loadMoreUsers();
+    this.showUsers();
   }
 
-  loadMoreUsers() {
+  showUsers() {
 
     if (this.#users.length) {
       this.#users.splice(0, AMOUNT_USERS).forEach((user) => this.view.createUser(user));
@@ -42,7 +51,7 @@ export default class Search {
   }
 
   handleLoadMoreClick() {
-    this.loadMoreUsers();
+    this.showUsers();
   }
 
   handleSearchUsersInput(event) {
