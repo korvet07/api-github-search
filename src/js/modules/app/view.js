@@ -48,14 +48,14 @@ export default class View {
                                  </a>
                                  <div class="user-content">
                                    <a class="user-content__link" href="https://github.com/${user.login}?tab=repositories"   target="_blank">Repositories</a>
-                                   <a class="details" href="#" >Подробнее</a>
+                                   <button class="btn-details" type="button">Подробнее</button>
                                  </div>
                                 `;
 
     this.usersList.append(userElement);
     userElement.addEventListener('click', (event) => {
 
-      if (event.target.classList.contains('details')) {
+      if (event.target.classList.contains('btn-details')) {
         this.getMoreInfo(user, userElement);
         event.target.style.display = 'none';
       }

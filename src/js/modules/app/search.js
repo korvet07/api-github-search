@@ -9,7 +9,7 @@ export default class Search {
     this.#users = null;
 
     this.view.loadMore.addEventListener('click', this.handleLoadMoreClick.bind(this));
-    this.view.searchButton.addEventListener('click', this.handleSearchUsersClick.bind(this));
+    this.view.searchButton.addEventListener('click', this.handleSearchButtonClick.bind(this));
     this.view.searchInput.addEventListener('keydown', this.handleSearchUsersKey.bind(this));
     this.view.searchInput.addEventListener('input', this.handleSearchUsersInput.bind(this));
   }
@@ -63,7 +63,7 @@ export default class Search {
     }
   }
 
-  handleSearchUsersClick() {
+  handleSearchButtonClick() {
     this.view.clearUsers();
     this.searchUser();
   }
