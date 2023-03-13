@@ -23,9 +23,9 @@ export default class View {
     this.loadMore.style.display = 'none';
 
 
-    this.usersListWrapper.append(this.usersList);
+    this.usersListWrapper.append(this.usersList, this.loadMore);
     this.inputWrapper.append(this.searchInput, this.searchButton);
-    this.app.append(this.title, this.inputWrapper, this.searchCounter, this.usersListWrapper, this.loadMore);
+    this.app.append(this.title, this.inputWrapper, this.searchCounter, this.usersListWrapper);
   }
 
   createElement(elemTag, elemClass, text) {
